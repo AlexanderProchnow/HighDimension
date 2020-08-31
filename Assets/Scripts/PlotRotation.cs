@@ -1,13 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlotRotation : MonoBehaviour
 {
+    public GameObject menu;
+
+    public float menuDistance = 2.5f;
+
+    OVRInput.Axis1D menuButton = OVRInput.Axis1D.PrimaryIndexTrigger;
+
+    // Variable to prevent button spamming
+    private bool cooldown = false;
+
+     Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -54,5 +66,29 @@ public class PlotRotation : MonoBehaviour
         // 0  1 up
 
         //bool button3 = OVRInput.Get(OVRInput.Button.Three);
+
+        // Open and close menu
+        if (OVRInput.Get(menuButton)>=0.5 && cooldown == false) {
+            if (menu.activeSelf) {
+                menu.SetActive(false);  
+            } else {
+                // Move menu in users view
+                menu.transform.position = mainCamera.transform.position + new Vector3(0,0, menuDistance);
+                Quaternion cr = mainCamera.transform.rotation;
+                // Freezes z rotation (e.g. head tilt)
+                menu.transform.rotation = new Quaternion(cr.x, cr.y, 0, cr.w);
+                menu.SetActive(true);
+            }
+            cooldown = true;
+       }
+
+       if (OVRInput.Get(menuButton)<0.5) {
+           cooldown = false;
+       }
+    }
+
+    // Prevent button spamming
+    void ResetCooldown(){
+     cooldown = false;
     }
 }

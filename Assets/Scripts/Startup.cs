@@ -31,17 +31,33 @@ public class Startup : MonoBehaviour
     // Record maximum and minimum value on each axis
     float xmax, xmin, ymax, ymin, zmax, zmin = 0;
 
+    delegate void DropdownEvent(int x1);
+    
     // Start is called before the first frame update
     void Start()
-    {       
-        int x1 = (int)x1_variable;
-        int x2 = (int)x2_variable;
-        int x3 = (int)x3_variable;
+    {               
         // Import data
         data = CSVReader.IntoJaggedArray("data/iris");
 
         // Get column names
         variables  = data[0];
+
+        /* Spawn data points
+        int x1 = (int)x1_variable;
+        int x2 = (int)x2_variable;
+        int x3 = (int)x3_variable;
+        */
+        populatePoints((int)x1_variable, (int)x2_variable, (int)x2_variable); 
+               
+    }
+
+    public void menuUpdate(int x1, int x2, int x3) {
+        populatePoints(x1, x2, x3);
+    }
+
+    // populate points and scale axes
+    void populatePoints(int x1, int x2, int x3) {
+        //xmax, xmin, ymax, ymin, zmax, zmin = 0;
 
         for (int line = 1; line < data.Length-1; line++)
         {
@@ -77,7 +93,6 @@ public class Startup : MonoBehaviour
         axis1_object.transform.localScale = new Vector3(xmax+xmax/3, 1, 1);
         axis2_object.transform.localScale = new Vector3(1, ymax+ymax/3, 1);
         axis3_object.transform.localScale = new Vector3(1, 1, zmax+zmax/3);
-        
     }
 
     void Awake() {
