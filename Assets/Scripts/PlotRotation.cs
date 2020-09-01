@@ -9,7 +9,7 @@ public class PlotRotation : MonoBehaviour
 
     public float menuDistance = 2.5f;
 
-    OVRInput.Axis1D menuButton = OVRInput.Axis1D.PrimaryIndexTrigger;
+    OVRInput.RawAxis1D menuButton = OVRInput.RawAxis1D.LIndexTrigger;
 
     // Variable to prevent button spamming
     private bool cooldown = false;
@@ -82,6 +82,8 @@ public class PlotRotation : MonoBehaviour
             cooldown = true;
        }
 
+       
+       // block menu button if still pressed, unlock button when trigger released
        if (OVRInput.Get(menuButton)<0.5) {
            cooldown = false;
        }

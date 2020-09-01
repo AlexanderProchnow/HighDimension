@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -11,22 +12,17 @@ public class Startup : MonoBehaviour
     public GameObject pointPrefab;
     public GameObject plotbase;
 
-    // set axis variables
-    public enum axis1_values {sepal_length, sepal_width, petal_length, petal_width, species};
-    public enum axis2_values {sepal_length, sepal_width, petal_length, petal_width, species};
-    public enum axis3_values {sepal_length, sepal_width, petal_length, petal_width, species};
-    public axis1_values x1_variable;
-    public axis2_values x2_variable;
-    public axis3_values x3_variable; 
+    // axis variables (0=first variable)
+    public int x1, x2, x3;
 
     // get plot axes objects
     public GameObject axis1_object;
     public GameObject axis2_object;
     public GameObject axis3_object;
 
-    // make imported data available (unused)
+    // make imported data available
     public static string[][] data; 
-    public static string[] variables;    
+    public string[] variables;    
 
     // Record maximum and minimum value on each axis
     float xmax, xmin, ymax, ymin, zmax, zmin = 0;
@@ -42,21 +38,45 @@ public class Startup : MonoBehaviour
         // Get column names
         variables  = data[0];
 
-        /* Spawn data points
-        int x1 = (int)x1_variable;
-        int x2 = (int)x2_variable;
-        int x3 = (int)x3_variable;
-        */
-        populatePoints((int)x1_variable, (int)x2_variable, (int)x2_variable); 
+        // Spawn data points by variables (0=firstVariable)
+        x1 = 0;
+        x2 = 1;
+        x3 = 2;
+        
+        populatePoints(x1, x2, x3); 
                
     }
 
-    public void menuUpdate(int x1, int x2, int x3) {
-        populatePoints(x1, x2, x3);
+    // called to update the axes (called when menu item changes)
+    public void x1Update(Dropdown change) {
+        clearData();
+        populatePoints(change.value, x2, x3);
+    }
+
+    public void x2Update(Dropdown change) {
+        clearData();
+        populatePoints(x1, change.value, x3);
+    }
+
+    public void x3Update(Dropdown change) {
+        clearData();
+        populatePoints(x1, x2, change.value);
+    }
+
+    // TODO
+    public void colorUpdate(Dropdown change) {
+        clearData();
+        populatePoints(change.value, x2, x3); // color)
+    }
+
+    public void clearData() {
+        foreach (Transform child in plotbase.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     // populate points and scale axes
-    void populatePoints(int x1, int x2, int x3) {
+    private void populatePoints(int x1, int x2, int x3) { // TODO add int color
         //xmax, xmin, ymax, ymin, zmax, zmin = 0;
 
         for (int line = 1; line < data.Length-1; line++)
