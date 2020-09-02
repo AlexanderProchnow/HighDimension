@@ -21,7 +21,8 @@ public class Startup : MonoBehaviour
     public GameObject axis3_object;
 
     // make imported data available
-    public static string[][] data; 
+    public static string[][] data;
+    public static float[,] fdata;
     public string[] variables;    
 
     // Record maximum and minimum value on each axis
@@ -34,6 +35,7 @@ public class Startup : MonoBehaviour
     {               
         // Import data
         data = CSVReader.IntoJaggedArray("data/iris");
+        fdata = CSVReader.IntoFloatArray("data/iris");
 
         // Get column names
         variables  = data[0];
@@ -50,23 +52,27 @@ public class Startup : MonoBehaviour
     // called to update the axes (called when menu item changes)
     public void x1Update(Dropdown change) {
         clearData();
-        populatePoints(change.value, x2, x3);
+        x1 = change.value;
+        populatePoints(x1, x2, x3);
     }
 
     public void x2Update(Dropdown change) {
         clearData();
-        populatePoints(x1, change.value, x3);
+        x2 = change.value;  
+        populatePoints(x1, x2, x3);
     }
 
     public void x3Update(Dropdown change) {
         clearData();
-        populatePoints(x1, x2, change.value);
+        x3 = change.value;
+        populatePoints(x1, x2, x3);
     }
 
     // TODO
     public void colorUpdate(Dropdown change) {
         clearData();
-        populatePoints(change.value, x2, x3); // color)
+        // color = change.value;
+        populatePoints(x1, x2, x3); // color)
     }
 
     public void clearData() {
@@ -75,9 +81,50 @@ public class Startup : MonoBehaviour
         }
     }
 
-    // populate points and scale axes
+     // populate points and scale axes
     private void populatePoints(int x1, int x2, int x3) { // TODO add int color
+        resetMinMaxTrackers();
+
+
+        for (int line = 1; line < fdata.GetLength(0); line++)
+        {
+            // x1
+            float value_x1 = fdata[line, x1];
+            // x2
+            float value_x2 = fdata[line, x2];
+            // x3
+            float value_x3 = fdata[line, x3];
+
+            GameObject point = Instantiate(pointPrefab, plotbase.transform);
+
+            //point.transform.parent = plotbase.transform;
+            point.transform.position = new Vector3(value_x1, value_x2, value_x3);
+
+            // Find x1 min and max
+            if (point.transform.position.x<xmin) { xmin = point.transform.position.x; }
+            if (point.transform.position.x>xmax) { xmax = point.transform.position.x; }
+
+            // Find x2 min and max
+            if (point.transform.position.y<ymin) { ymin = point.transform.position.y; }
+            if (point.transform.position.y>ymax) { ymax = point.transform.position.y; }
+
+            // Find x3 min and max
+            if (point.transform.position.z<zmin) { zmin = point.transform.position.z; }
+            if (point.transform.position.z>zmax) { zmax = point.transform.position.z; }
+
+            
+        }
+
+        // Scale plot axes to reach up until the maximum and minium values for each axis
+        axis1_object.transform.localScale = new Vector3(xmax+xmax/3, 1, 1);
+        axis2_object.transform.localScale = new Vector3(1, ymax+ymax/3, 1);
+        axis3_object.transform.localScale = new Vector3(1, 1, zmax+zmax/3);
+    }
+
+    // populate points and scale axes
+    private void populatePointsOLD(int x1, int x2, int x3) { // TODO add int color
         //xmax, xmin, ymax, ymin, zmax, zmin = 0;
+
 
         for (int line = 1; line < data.Length-1; line++)
         {
@@ -125,5 +172,15 @@ public class Startup : MonoBehaviour
 
     }
 
+
+    // Helper function
+    private void resetMinMaxTrackers() {
+        xmax = 0;
+        xmin = 0;
+        ymax = 0;
+        ymin = 0;
+        zmax = 0;
+        zmin = 0;
+    }
 
 }

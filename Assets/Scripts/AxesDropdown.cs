@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AxesDropdown : MonoBehaviour
 {
     public GameObject importManager;
+    public int axis;
 
     private string[] vars;
     // Start is called before the first frame update
@@ -13,21 +14,24 @@ public class AxesDropdown : MonoBehaviour
     {
         //Fetch the Dropdown GameObject
         Dropdown dropdown = GetComponent<Dropdown>();
-        //Add listener for when the value of the Dropdown changes, to take action
-        dropdown.onValueChanged.AddListener(delegate {
-            DropdownValueChanged(dropdown);
-        });
 
         // Get variable list
         vars = importManager.GetComponent<Startup>().variables;
 
+        // Create empty list for dropdown entries
         List<Dropdown.OptionData> entries = new List<Dropdown.OptionData>();
 
+        // Add each variable in the data as a dropdown option
         foreach(string var in vars) {
             entries.Add(new Dropdown.OptionData(var));
         }
 
+        // Assign options
         dropdown.options = entries;
+
+        // Set initial display
+        dropdown.value=axis-1;
+        
 
     }
 
@@ -35,11 +39,5 @@ public class AxesDropdown : MonoBehaviour
     void Update()
     {
         
-    }
-
-    //Ouput the new value of the Dropdown into Text
-    void DropdownValueChanged(Dropdown change)
-    {
-        Debug.Log("Value changed");
     }
 }
