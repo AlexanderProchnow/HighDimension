@@ -28,6 +28,8 @@ public class Startup : MonoBehaviour
     // Record maximum and minimum value on each axis
     float xmax, xmin, ymax, ymin, zmax, zmin = 0;
 
+    private bool colorGroupingEnabled;
+
     delegate void DropdownEvent(int x1);
     
     // Start is called before the first frame update
@@ -70,9 +72,15 @@ public class Startup : MonoBehaviour
 
     // TODO
     public void colorUpdate(Dropdown change) {
-        clearData();
-        // color = change.value;
-        populatePoints(x1, x2, x3); // color)
+        if (colorGroupingEnabled) {
+            clearData();
+            // color = change.value;
+            populatePoints(x1, x2, x3); // color)
+        }
+    }
+
+    public void enableColorGrouping(Toggle toggle) {
+        colorGroupingEnabled = toggle.isOn;
     }
 
     public void clearData() {
