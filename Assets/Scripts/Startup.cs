@@ -8,12 +8,26 @@ using System.Globalization;
 
 public class Startup : MonoBehaviour
 {
+    [Header("Point Prefabs:")]
+
     // basic point prefab
-    public GameObject pointPrefab;
+    public GameObject pointDefault;
+    public GameObject pointColor1;
+    public GameObject pointColor2;
+    public GameObject pointColor3;
+    public GameObject pointColor4;
+
+    [Tooltip("Range in which values are assigned the same color.")]
+    public float colorPadding = 1;
+
+
+    [Header("Axes and variables:")]
+    [Space(10)]
     public GameObject plotbase;
 
+    
     // axis variables (0=first variable)
-    public int x1, x2, x3;
+    public int x1, x2, x3, color;
 
     // get plot axes objects
     public GameObject axis1_object;
@@ -30,6 +44,8 @@ public class Startup : MonoBehaviour
 
     private bool colorGroupingEnabled;
 
+    List<GameObject> colored_point_prefabs;
+
     delegate void DropdownEvent(int x1);
     
     // Start is called before the first frame update
@@ -42,12 +58,18 @@ public class Startup : MonoBehaviour
         // Get column names
         variables  = data[0];
 
+        // Initialize colored point prefabs list
+        colored_point_prefabs = new List<GameObject>() {
+            pointColor1, pointColor2, pointColor3, pointColor4
+        };
+
         // Spawn data points by variables (0=firstVariable)
         x1 = 0;
         x2 = 1;
         x3 = 2;
+        color = 4;
         
-        populatePoints(x1, x2, x3); 
+        populatePoints(x1, x2, x3, color); 
                
     }
 
@@ -55,32 +77,34 @@ public class Startup : MonoBehaviour
     public void x1Update(Dropdown change) {
         clearData();
         x1 = change.value;
-        populatePoints(x1, x2, x3);
+        populatePoints(x1, x2, x3, color);
     }
 
     public void x2Update(Dropdown change) {
         clearData();
         x2 = change.value;  
-        populatePoints(x1, x2, x3);
+        populatePoints(x1, x2, x3, color);
     }
 
     public void x3Update(Dropdown change) {
         clearData();
         x3 = change.value;
-        populatePoints(x1, x2, x3);
+        populatePoints(x1, x2, x3, color);
     }
 
     // TODO
     public void colorUpdate(Dropdown change) {
         if (colorGroupingEnabled) {
             clearData();
-            // color = change.value;
-            populatePoints(x1, x2, x3); // color)
+            color = change.value;
+            populatePoints(x1, x2, x3, color);
         }
     }
 
     public void enableColorGrouping(Toggle toggle) {
         colorGroupingEnabled = toggle.isOn;
+        clearData();
+        populatePoints(x1, x2, x3, color);
     }
 
     public void clearData() {
@@ -90,23 +114,54 @@ public class Startup : MonoBehaviour
     }
 
      // populate points and scale axes
-    private void populatePoints(int x1, int x2, int x3) { // TODO add int color
+    private void populatePoints(int x1, int x2, int x3, int color) {
         resetMinMaxTrackers();
 
+        // create list to keep track of color values
+        List<float> color_values = new List<float>();
 
+        // iterate over each row in the data
         for (int line = 1; line < fdata.GetLength(0); line++)
         {
+            // Prefab to instantiate for current data point
+            GameObject pointPrefab = pointDefault;
             // x1
             float value_x1 = fdata[line, x1];
             // x2
             float value_x2 = fdata[line, x2];
             // x3
             float value_x3 = fdata[line, x3];
+            // color
+            if (colorGroupingEnabled) {
+                float value_color = fdata[line, color];
+                // Rounds value up to color padding digits (e.g. padding=1 rounds to nearest integer)
+                value_color = Mathf.Round(value_color * colorPadding) / colorPadding;
+                // Get index of value
+                int index_of_color_value = color_values.IndexOf(value_color);
+                // Check if index is -1, i.e. value is not present in list
+                if (index_of_color_value==-1) {
+                    // add value to list
+                    color_values.Add(value_color);
+                    // set index variable to newly added value's index
+                    index_of_color_value = color_values.IndexOf(value_color);
+                }
+                
+                // Check if prefab list must be expanded
+                if (index_of_color_value >= colored_point_prefabs.Count) {
+                    // expand list to accomodate new index
+                    colored_point_prefabs.Add(pointDefault); // TODO Make list extend to new colors
+                }
+                
+                // override pointPrefab to instantiate so that it includes the appropriate color
+                pointPrefab = colored_point_prefabs[index_of_color_value];
+            }
 
-            GameObject point = Instantiate(pointPrefab, plotbase.transform);
+            // Instantiate point with the plotbase as parent and instantiating in world space is false
+            GameObject point = Instantiate(pointPrefab, plotbase.transform, false);
 
             //point.transform.parent = plotbase.transform;
-            point.transform.position = new Vector3(value_x1, value_x2, value_x3);
+            //point.transform.localPosition = new Vector3(0,0,0);
+            point.transform.localPosition = new Vector3(value_x1, value_x2, value_x3);
 
             // Find x1 min and max
             if (point.transform.position.x<xmin) { xmin = point.transform.position.x; }
@@ -146,7 +201,7 @@ public class Startup : MonoBehaviour
             float value_x3;
             float.TryParse(data[line][x3], NumberStyles.Any, NumberFormatInfo.InvariantInfo, out value_x3);            
             
-            GameObject point = Instantiate(pointPrefab, plotbase.transform);
+            GameObject point = Instantiate(pointDefault, plotbase.transform);
 
             //point.transform.parent = plotbase.transform;
             point.transform.position += new Vector3(value_x1, value_x2, value_x3);
@@ -189,6 +244,10 @@ public class Startup : MonoBehaviour
         ymin = 0;
         zmax = 0;
         zmin = 0;
+    }
+
+    public void ResetScene() {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
 }
