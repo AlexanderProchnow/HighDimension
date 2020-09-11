@@ -10,9 +10,11 @@ public class UIManager : MonoBehaviour
     private int currentCase;
     private string[] cases;
     private int[] caseValues;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Padding toggle
         currentCase = 0;
         cases = new string[] {
             "1", "10", "100", "1k", "10k", "100k", "1M"
