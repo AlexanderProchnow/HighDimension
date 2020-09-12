@@ -69,42 +69,36 @@ public class Startup : MonoBehaviour
         x3 = 2;
         color = 4;
         
-        populatePoints(x1, x2, x3, color); 
+        populatePoints(); 
                
     }
 
     // called to update the axes (called when menu item changes)
     public void x1Update(Dropdown change) {
-        clearData();
         x1 = change.value;
-        populatePoints(x1, x2, x3, color);
+        populatePoints();
     }
 
     public void x2Update(Dropdown change) {
-        clearData();
         x2 = change.value;  
-        populatePoints(x1, x2, x3, color);
+        populatePoints();
     }
 
     public void x3Update(Dropdown change) {
-        clearData();
         x3 = change.value;
-        populatePoints(x1, x2, x3, color);
+        populatePoints();
     }
 
-    // TODO
     public void colorUpdate(Dropdown change) {
         if (colorGroupingEnabled) {
-            clearData();
             color = change.value;
-            populatePoints(x1, x2, x3, color);
+            populatePoints();
         }
     }
 
     public void enableColorGrouping(Toggle toggle) {
         colorGroupingEnabled = toggle.isOn;
-        clearData();
-        populatePoints(x1, x2, x3, color);
+        populatePoints();
     }
 
     public void clearData() {
@@ -114,7 +108,8 @@ public class Startup : MonoBehaviour
     }
 
      // populate points and scale axes
-    private void populatePoints(int x1, int x2, int x3, int color) {
+    public void populatePoints(bool clearCurrentData=true) {
+        if (clearCurrentData) { clearData(); }
         resetMinMaxTrackers();
 
         // create list to keep track of color values

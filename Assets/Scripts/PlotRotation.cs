@@ -67,16 +67,18 @@ public class PlotRotation : MonoBehaviour
 
         //bool button3 = OVRInput.Get(OVRInput.Button.Three);
 
-        // Open and close menu
+        // Open and close menu, menu appears in view of user
         if (OVRInput.Get(menuButton)>=0.5 && cooldown == false) {
             if (menu.activeSelf) {
                 menu.SetActive(false);  
             } else {
-                // Move menu in users view
-                menu.transform.position = mainCamera.transform.position + new Vector3(0,0, menuDistance);
+                // Get forward vector of main camera (the direction of the users view)
+                Vector3 viewDirection = mainCamera.transform.forward * menuDistance;
+                // Move menu in users view, freeze y axis to display menu at the same height wrt the users eyelevel
+                menu.transform.position = mainCamera.transform.position + new Vector3(viewDirection.x, -0.5f, viewDirection.z);
                 Quaternion cr = mainCamera.transform.rotation;
-                // Freezes z rotation (e.g. head tilt)
-                menu.transform.rotation = new Quaternion(cr.x, cr.y, 0, cr.w);
+                // Freezes x and z rotation (i.e. head tilt)
+                menu.transform.rotation = new Quaternion(0, cr.y, 0, cr.w); // Quaternion.LookRotation(viewDirection/menuDistance, Vector3.up);
                 menu.SetActive(true);
             }
             cooldown = true;
