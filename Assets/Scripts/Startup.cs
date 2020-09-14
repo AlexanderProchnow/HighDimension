@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using UnityEngine.SceneManagement;
 
 
 public class Startup : MonoBehaviour
@@ -53,10 +54,10 @@ public class Startup : MonoBehaviour
     {               
         // Import data
         data = CSVReader.IntoJaggedArray("data/iris");
-        fdata = CSVReader.IntoFloatArray("data/iris");
+        fdata = CSVReader.IntoFloatArray("data/iris"); // CHANGE TO PATH
 
         // Get column names
-        variables  = data[0];
+        variables = data[0];
 
         // Initialize colored point prefabs list
         colored_point_prefabs = new List<GameObject>() {
@@ -242,7 +243,11 @@ public class Startup : MonoBehaviour
     }
 
     public void ResetScene() {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene("VRApp");
     }
 
+    public void BackToMainMenu() {
+        //Camera.main.clearFlags = CameraClearFlags.SolidColor;
+        SceneManager.LoadScene("DesktopApp");
+    }
 }
