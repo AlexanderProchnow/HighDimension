@@ -221,8 +221,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 158.442, y: 21.65, z: 1}
-  m_Center: {x: 7.659028, y: 0, z: 0}
+  m_Size: {x: 140.07219, y: 21.65, z: 1}
+  m_Center: {x: -1.5259118, y: 0, z: 0}
 --- !u!1 &13016779
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 48329075}
   - component: {fileID: 48329077}
   - component: {fileID: 48329076}
+  - component: {fileID: 48329078}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -530,7 +531,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.8133331}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -572,6 +573,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48329074}
   m_CullTransparentMesh: 0
+--- !u!65 &48329078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48329074}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.41, y: 46.9, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &67901700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,8 +1432,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 153.32, y: 27.3, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 153.32, y: 25.823044, z: 1}
+  m_Center: {x: 0, y: 0.738478, z: 0}
 --- !u!1 &282000027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000020980835}
+  m_AnchoredPosition: {x: 0, y: -0.00001335144}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &365247837
@@ -2875,6 +2889,7 @@ GameObject:
   - component: {fileID: 549797497}
   - component: {fileID: 549797496}
   - component: {fileID: 549797495}
+  - component: {fileID: 549797498}
   m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -2923,8 +2938,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    m_PressedColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2945,7 +2960,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 48329075}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.8133331
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2988,6 +3003,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549797493}
   m_CullTransparentMesh: 0
+--- !u!65 &549797498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549797493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.5, y: 144.2, z: 0}
+  m_Center: {x: -9.48, y: -74.53, z: 0}
 --- !u!1 &565255203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,7 +3354,6 @@ GameObject:
   - component: {fileID: 611147791}
   - component: {fileID: 611147790}
   - component: {fileID: 611147789}
-  - component: {fileID: 611147792}
   m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
@@ -3423,19 +3450,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611147787}
   m_CullTransparentMesh: 0
---- !u!65 &611147792
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611147787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 151.31003, y: 147.65, z: 1}
-  m_Center: {x: 0, y: -74.9, z: 0}
 --- !u!1 &639410041
 GameObject:
   m_ObjectHideFlags: 0

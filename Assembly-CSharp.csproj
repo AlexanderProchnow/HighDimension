@@ -42,6 +42,7 @@
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarBody.cs" />
      <Compile Include="Assets\Oculus\Avatar\Samples\SocialStarter\Assets\Scripts\P2PManager.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Video\Scripts\ButtonDownListener.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserLinux.cs" />
      <Compile Include="Assets\Oculus\Spatializer\scripts\OculusSpatializerUnity.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\Tools\InteractableToolView.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportInputHandler.cs" />
@@ -56,6 +57,7 @@
      <Compile Include="Assets\Oculus\SampleFramework\Core\GuardianBoundarySystem\BoundsLockedObject.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportOrientationHandler.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Scripts\TrainButtonVisualController.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\BasicSample.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\MinMaxAttribute.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\CharacterCameraConstraint.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\DistanceGrab\Scripts\PauseOnInputLoss.cs" />
@@ -83,6 +85,8 @@
      <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPSettings.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\GazeTarget.cs" />
      <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPAudioSource.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileText.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserWindows.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarSettings.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\Interactable.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\AudioManager.cs" />
@@ -110,12 +114,14 @@
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportOrientationHandlerHMD.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarPacket.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarSkinnedMeshRenderPBSComponent.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\IStandaloneFileBrowser.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\OVROverlayCanvas\Scripts\OVROverlayCanvas.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Video\Scripts\MoviePlayerSampleControls.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Utils\InspectorNoteAttribute.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\DistanceGrab\Scripts\GrabManager.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\CustomHands\Scripts\HandPose.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\OVROverlay\Scripts\OVROverlaySample.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileImage.cs" />
      <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextBase.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Scripts\TrainCrossingController.cs" />
      <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSync.cs" />
@@ -123,7 +129,10 @@
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Utils\FastList.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\LocomotionController.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\SoundFX.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowser.cs" />
+     <Compile Include="Assets\Scripts\FileBrowser.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\DistanceGrab\Scripts\DistanceGrabbable.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleSaveFileImage.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\InteractableToolsInputRouter.cs" />
      <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextCanned.cs" />
      <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextMorphTarget.cs" />
@@ -140,6 +149,7 @@
      <Compile Include="Assets\Oculus\SampleFramework\Core\Video\Scripts\MediaPlayerImage.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\TouchControllers\TouchController.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\GuardianBoundarySystem\GuardianBoundaryDisplay.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileTextMultiple.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportOrientationHandler360.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\DebugUI\Scripts\HandedInputSelector.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\AmbienceEmitter.cs" />
@@ -167,6 +177,7 @@
      <Compile Include="Assets\Oculus\SampleFramework\Core\Video\Plugins\Android\NativeVideoPlayer.cs" />
      <Compile Include="Assets\Oculus\LipSync\Scenes\Scripts\EnableSwitch.cs" />
      <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPPropagationMaterial.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserMac.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Video\Scripts\VectorUtil.cs" />
      <Compile Include="Assets\Oculus\Avatar\Samples\LocalAvatar\Scripts\GazeTargetSpawner.cs" />
      <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPPropagationSettings.cs" />
@@ -177,6 +188,7 @@
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Scripts\Utils\Pose.cs" />
      <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPPropagationGeometry.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserEditor.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportTargetHandler.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarHand.cs" />
      <Compile Include="Assets\Scripts\AxesDropdown.cs" />
@@ -195,6 +207,7 @@
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\Tools\FingerTipPokeTool.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportTransitionBlink.cs" />
      <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarAssetTexture.cs" />
+     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleSaveFileText.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\BoneCapsuleTriggerLogic.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Scripts\WindmillController.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportDestination.cs" />
@@ -202,19 +215,7 @@
      <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextTextureFlip.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Usage\DebugUI\DebugUISample.cs" />
      <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\ButtonController.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserLinux.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\BasicSample.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileText.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserWindows.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\IStandaloneFileBrowser.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileImage.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowser.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleSaveFileImage.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleOpenFileTextMultiple.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserMac.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserEditor.cs" />
-     <Compile Include="Assets\StandaloneFileBrowser\Sample\CanvasSampleSaveFileText.cs" />
-     <Compile Include="Assets\Scripts\FileBrowser.cs" />
+     <Compile Include="Assets\Scripts\UIManagerDesktop.cs" />
      <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\XingLightShader.shader" />
      <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarMaterialStateShader.cginc" />
      <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\ButtonGlow.shader" />

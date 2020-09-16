@@ -7,7 +7,8 @@ using System.Globalization;
  
 public class CSVReader
 {
-    static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+    //static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+    static string SPLIT_RE = @"(,|;)";
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
 
@@ -59,7 +60,7 @@ public class CSVReader
         numLines = lines.Length;
 
         // get column names
-        var header = Regex.Split(lines[0], @",");
+        var header = Regex.Split(lines[0], SPLIT_RE);
 
         // create empty array of shape (#lines, #variables)
         string[,] data = new string[lines.Length, header.Length];
@@ -73,7 +74,7 @@ public class CSVReader
         for (int line = 1; line < lines.Length; line++)
         {
             // split values
-            var values = Regex.Split(lines[line], @",");
+            var values = Regex.Split(lines[line], SPLIT_RE);
             
             // assign value to index in data array
             for(var variable = 0; variable < values.Length; variable++) {
@@ -96,7 +97,7 @@ public class CSVReader
         Debug.Log(numLines);
 
         // get column names
-        var header = Regex.Split(lines[0], @",");
+        var header = Regex.Split(lines[0], SPLIT_RE);
 
         // create empty array of shape (#lines, ?)
         string[][] data = new string[lines.Length][];
@@ -108,7 +109,7 @@ public class CSVReader
         for (int line = 1; line < lines.Length; line++)
         {
             // split values
-            var values = Regex.Split(lines[line], @",");
+            var values = Regex.Split(lines[line], SPLIT_RE);
             
             // assign value to index in data array
             data[line] = values;
@@ -117,7 +118,7 @@ public class CSVReader
         return data;
     }
     
-    public static float[,] IntoFloatArray(string path) {
+    public static Tuple<float[,], string[]> IntoFloatArray(string path) {
         string[][] raw_data = IntoJaggedArray(path);
         float[,] data = new float[numLines, raw_data[0].Length];
 
@@ -156,6 +157,6 @@ public class CSVReader
                 data[row, column] = fvalue;
             }
         }
-        return data;
+        return new Tuple<float[,], string[]>(data, raw_data[0]);
     }
 }

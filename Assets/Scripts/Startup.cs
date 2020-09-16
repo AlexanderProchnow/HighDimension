@@ -53,11 +53,15 @@ public class Startup : MonoBehaviour
     void Start()
     {               
         // Import data
-        data = CSVReader.IntoJaggedArray("data/iris");
-        fdata = CSVReader.IntoFloatArray("data/iris"); // CHANGE TO PATH
+        var importedData = CSVReader.IntoFloatArray(FileBrowser.fileName);
+
+        // Get data values
+        fdata = importedData.Item1;
 
         // Get column names
-        variables = data[0];
+        variables = importedData.Item2;
+
+        
 
         // Initialize colored point prefabs list
         colored_point_prefabs = new List<GameObject>() {
