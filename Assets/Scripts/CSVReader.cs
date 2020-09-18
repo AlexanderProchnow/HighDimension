@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Globalization;
  
@@ -88,10 +89,11 @@ public class CSVReader
     public static string[][] IntoJaggedArray(string path) {
 
         // import data from resources folder
-        TextAsset raw_data = Resources.Load<TextAsset>(path);
-
+        string raw_data = File.ReadAllText(path);
+        // TextAsset raw_data = Resources.Load<TextAsset>(path); // OLD
+        
         // line split
-        var lines = Regex.Split(raw_data.text, LINE_SPLIT_RE);
+        var lines = Regex.Split(raw_data, LINE_SPLIT_RE);
 
         numLines = lines.Length;
         Debug.Log(numLines);
