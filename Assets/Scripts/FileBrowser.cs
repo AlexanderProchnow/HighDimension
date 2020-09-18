@@ -15,9 +15,15 @@ public class FileBrowser : MonoBehaviour {
     public GameObject datasetPanel;
     public GameObject datasetWidgetPrefab;
 
-    private static List<TextAsset> datasets;
+    private static List<string> datasets;
 
     void Start() {
+        // Create the local directory for saving dataset files
+        if (!Directory.Exists(Application.persistentDataPath + "/data/"))
+        {
+            DirectoryInfo di = Directory.CreateDirectory(Application.persistentDataPath + "/data/");
+        }
+        
         updateDatasetPanel();
     }
 
@@ -26,16 +32,15 @@ public class FileBrowser : MonoBehaviour {
         foreach (Transform child in datasetPanel.transform) {
             GameObject.Destroy(child.gameObject);
         }
-        datasets = new List<TextAsset>();
-        // Read all files in Resources folder
-        Object[] datasetObjects = Resources.LoadAll("data", typeof(TextAsset));
-
-        Debug.Log(datasetObjects.Length);
+        datasets = new List<string>();
+        // Read all files in data folder
+        string[] files = Directory.GetFiles(Application.persistentDataPath + "/data/", "*.csv");
+        // Object[] datasetObjects = Resources.LoadAll("data", typeof(TextAsset)); // OLD
 
         // Cast objects to text assets
-        foreach(Object set in datasetObjects) {
-            datasets.Add((TextAsset) set);
-            Debug.Log(datasets[datasets.Count-1].name);
+        foreach(string setPath in files) {
+            datasets.Add(setPath);
+            Debug.Log(datasets[datasets.Count-1]);
         }
 
         // Make a widget for each file that contains name, (num rows), delete, enter VR:
@@ -51,7 +56,7 @@ public class FileBrowser : MonoBehaviour {
         datasetWidget.transform.localPosition = new Vector3(100*(index+1), -100, 0);
         // Set widget header to dataset name
         Transform datasetName = datasetWidget.transform.Find("Header");
-        datasetName.GetComponent<Text>().text = datasets[index].name;
+        datasetName.GetComponent<Text>().text = ExtractFileName(datasets[index]);
     }
 
     // Called when import button is clicked
@@ -59,26 +64,35 @@ public class FileBrowser : MonoBehaviour {
         path = StandaloneFileBrowser.OpenFilePanel("Open File", "", "csv", false)[0];
 
         // Extract file name from path
-        string[] pathArray = Regex.Split(path, @"\\");
-        string fileNameWithEnding = pathArray[pathArray.Length-1];
-        fileName = Regex.Split(fileNameWithEnding, @"\.")[0];
+        fileName = ExtractFileName(path);
 
         // Display imported path message
-        pathText.text = path + "\n" + Directory.GetCurrentDirectory() + "\n" + fileNameWithEnding;
+        pathText.text = path + "\n" +  Application.persistentDataPath + "/data/" + fileName + ".csv" + "\n" + fileName;
 
         // copy file to resource folder
-        string copyToPath = "Assets/Resources/data/" + fileNameWithEnding;
+        string copyToPath = Application.persistentDataPath + "/data/" + fileName + ".csv";
+        // string copyToPath = "Assets/Resources/data/" + fileNameWithEnding; // OLD
         File.Copy(path, copyToPath, true);
 
-        // Add dataset to panel
+        updateDatasetPanel();
+        /* Add dataset to panel
         TextAsset importedFile = Resources.Load<TextAsset>("Assets/Resources/data/" + fileName);
         datasets.Add(importedFile);
         Debug.Log(importedFile);
         CreateDatasetWidget(datasets.Count-1);
+        */
     }
 
     public void EnterVR() {
         SceneManager.LoadScene("VRApp");
+    }
+
+    // Helper function
+    private string ExtractFileName(string path) {
+        string[] pathArray = Regex.Split(path, @"(\\|/)");
+        string fileNameWithEnding = pathArray[pathArray.Length-1];
+        string fileName = Regex.Split(fileNameWithEnding, @"\.")[0];
+        return fileName;
     }
 }
 
