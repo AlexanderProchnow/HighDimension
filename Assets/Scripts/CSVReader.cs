@@ -9,7 +9,8 @@ using System.Globalization;
 public class CSVReader
 {
     //static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
-    static string SPLIT_RE = @"(,|;)";
+    // static string SPLIT_RE = @"(,|;)"; OLD
+    static string SPLIT_RE = UIManagerDesktop.separator;
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
 

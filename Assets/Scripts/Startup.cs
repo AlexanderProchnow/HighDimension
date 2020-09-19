@@ -53,7 +53,7 @@ public class Startup : MonoBehaviour
     void Start()
     {               
         // Import data
-        var importedData = CSVReader.IntoFloatArray("Assets/Resources/data/" + FileBrowser.fileName + ".csv");
+        var importedData = CSVReader.IntoFloatArray(Application.persistentDataPath + "/data/" + FileBrowser.fileName + ".csv");
 
         // Get data values
         fdata = importedData.Item1;

@@ -57,6 +57,14 @@ public class FileBrowser : MonoBehaviour {
         // Set widget header to dataset name
         Transform datasetName = datasetWidget.transform.Find("Header");
         datasetName.GetComponent<Text>().text = ExtractFileName(datasets[index]);
+
+        // Set button functionality
+        Transform enterVRButton = datasetWidget.transform.Find("EnterVRButton");
+        Transform deleteButton = datasetWidget.transform.Find("DeleteButton");
+
+        enterVRButton.GetComponent<Button>().onClick.AddListener(delegate{EnterVR(index);});
+        deleteButton.GetComponent<Button>().onClick.AddListener(delegate{DeleteDataset(index);});
+
     }
 
     // Called when import button is clicked
@@ -75,16 +83,16 @@ public class FileBrowser : MonoBehaviour {
         File.Copy(path, copyToPath, true);
 
         updateDatasetPanel();
-        /* Add dataset to panel
-        TextAsset importedFile = Resources.Load<TextAsset>("Assets/Resources/data/" + fileName);
-        datasets.Add(importedFile);
-        Debug.Log(importedFile);
-        CreateDatasetWidget(datasets.Count-1);
-        */
     }
 
-    public void EnterVR() {
+    public void EnterVR(int index) {
+        fileName = ExtractFileName(datasets[index]);
         SceneManager.LoadScene("VRApp");
+    }
+
+    public void DeleteDataset(int index) {
+        File.Delete(datasets[index]);
+        updateDatasetPanel();
     }
 
     // Helper function

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManagerDesktop : MonoBehaviour
 {
+    public static string separator;
+
     public GameObject projectManager;
     public Text separatorValueText;
     private int currentCase;
@@ -18,6 +20,7 @@ public class UIManagerDesktop : MonoBehaviour
             ",", ";"
         };
 
+        separator = cases[currentCase];
     }
 
     public void separatorToggleLeft() {
@@ -33,6 +36,6 @@ public class UIManagerDesktop : MonoBehaviour
     private void updateText() {
         currentCase = Mathf.Clamp(currentCase, 0, cases.Length-1);
         separatorValueText.text = cases[currentCase];
-        //projectManager = cases[currentCase];
+        separator = cases[currentCase];
     }
 }
