@@ -221,7 +221,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 140.07219, y: 21.65, z: 1}
+  m_Size: {x: 140, y: 21.65, z: 1}
   m_Center: {x: -1.5259118, y: 0, z: 0}
 --- !u!1 &13016779
 GameObject:
@@ -531,7 +531,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.8133331}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -584,7 +584,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.41, y: 46.9, z: 1}
+  m_Size: {x: 20, y: 45, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &67901700
 GameObject:
@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 111826994}
   - component: {fileID: 111826996}
   - component: {fileID: 111826995}
+  - component: {fileID: 111826997}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -693,6 +694,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111826993}
   m_CullTransparentMesh: 0
+--- !u!65 &111826997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111826993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 45, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &114738157
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +718,7 @@ GameObject:
   - component: {fileID: 114738158}
   - component: {fileID: 114738159}
   - component: {fileID: 114738160}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ColorToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1757,7 +1771,7 @@ GameObject:
   - component: {fileID: 402293239}
   - component: {fileID: 402293241}
   - component: {fileID: 402293240}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2960,7 +2974,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 48329075}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.8133331
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3027,7 +3041,7 @@ GameObject:
   - component: {fileID: 565255204}
   - component: {fileID: 565255206}
   - component: {fileID: 565255205}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3369,7 +3383,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611147787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 815850198}
@@ -4003,8 +4017,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 158.442, y: 21.65, z: 1}
-  m_Center: {x: 7.659028, y: 0, z: 0}
+  m_Size: {x: 140, y: 21.65, z: 1}
+  m_Center: {x: -1.3736674, y: 0, z: 0}
 --- !u!114 &781184486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5343,7 +5357,6 @@ GameObject:
   - component: {fileID: 1185513038}
   - component: {fileID: 1185513037}
   - component: {fileID: 1185513036}
-  - component: {fileID: 1185513035}
   m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
@@ -5372,19 +5385,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
---- !u!65 &1185513035
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185513033}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 151.31003, y: 147.65, z: 1}
-  m_Center: {x: 0, y: -74.9, z: 0}
 --- !u!114 &1185513036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5608,8 +5608,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 158.442, y: 21.65, z: 1}
-  m_Center: {x: 7.659028, y: 0, z: 0}
+  m_Size: {x: 140.17824, y: 21.65, z: 1}
+  m_Center: {x: -1.4728492, y: 0, z: 0}
 --- !u!114 &1219165979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5703,6 +5703,7 @@ GameObject:
   - component: {fileID: 1304750434}
   - component: {fileID: 1304750433}
   - component: {fileID: 1304750432}
+  - component: {fileID: 1304750435}
   m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -5772,7 +5773,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 111826995}
   m_HandleRect: {fileID: 111826994}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5816,6 +5817,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304750430}
   m_CullTransparentMesh: 0
+--- !u!65 &1304750435
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304750430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.5, y: 145.4, z: 1}
+  m_Center: {x: -10.07, y: -75, z: 0}
 --- !u!1 &1309797884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6312,6 +6326,7 @@ GameObject:
   - component: {fileID: 1444711513}
   - component: {fileID: 1444711515}
   - component: {fileID: 1444711514}
+  - component: {fileID: 1444711516}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -6376,6 +6391,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444711512}
   m_CullTransparentMesh: 0
+--- !u!65 &1444711516
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444711512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 40, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1510458975
 GameObject:
   m_ObjectHideFlags: 0
@@ -7432,7 +7460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000020980835}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1943531311
@@ -7679,7 +7707,7 @@ GameObject:
   - component: {fileID: 1980475420}
   - component: {fileID: 1980475422}
   - component: {fileID: 1980475421}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7759,6 +7787,7 @@ GameObject:
   - component: {fileID: 1996187632}
   - component: {fileID: 1996187631}
   - component: {fileID: 1996187630}
+  - component: {fileID: 1996187633}
   m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -7872,6 +7901,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996187628}
   m_CullTransparentMesh: 0
+--- !u!65 &1996187633
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996187628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.5, y: 145, z: 1}
+  m_Center: {x: -10.6, y: -74.75, z: 0}
 --- !u!1 &2006913942
 GameObject:
   m_ObjectHideFlags: 0
