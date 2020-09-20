@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject startup;
+    public static Slider minSlider;
+
     public Text paddingValueText;
     private int currentCase;
     private string[] cases;
@@ -14,6 +16,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        minSlider = this.transform.Find("FilterPanel").Find("MinSlider").GetComponent<Slider>();
+
         // Padding toggle
         currentCase = 2; // starting case is "1"
         cases = new string[] {
@@ -23,12 +27,18 @@ public class UIManager : MonoBehaviour
         caseValues = new float[] {
             0.01f, 0.1f, 1, 10, 100, 1000, 10000, 100000, 1000000
         };
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    // Set sliders to min and max values of axes
+    public static void updateSliders() {
+        minSlider.value = Startup.xmin;
+        minSlider.minValue = Startup.xmin;
+        minSlider.maxValue = Startup.xmax;
+    }
+
+    public static float getMinSliderValue() {
+        return minSlider.value;
     }
 
     public void paddingToggleLeft() {

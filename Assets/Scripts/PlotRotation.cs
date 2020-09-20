@@ -14,12 +14,16 @@ public class PlotRotation : MonoBehaviour
     // Variable to prevent button spamming
     private bool cooldown = false;
 
-     Camera mainCamera;
+    Camera mainCamera;
+
+    // Get data object to keep data points at constant size
+    private Transform data;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+        data = this.transform.Find("Data");
     }
 
     // Update is called once per frame
@@ -47,13 +51,25 @@ public class PlotRotation : MonoBehaviour
         float leftGrip = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger);
 
         if(leftGrip!=0) {
-            this.transform.localScale -= new Vector3(leftGrip, leftGrip, leftGrip) * Time.deltaTime;
+            Vector3 scaling = new Vector3(leftGrip, leftGrip, leftGrip) * Time.deltaTime;
+            this.transform.localScale -= scaling;
+
+            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);//localScale += scaling;
+            foreach(Transform point in tarray) {
+                point.localScale += scaling*0.1f;
+            }
         }
 
         float rightGrip = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
 
         if(rightGrip!=0) {
-            this.transform.localScale += new Vector3(rightGrip, rightGrip, rightGrip) * Time.deltaTime;
+            Vector3 scaling = new Vector3(rightGrip, rightGrip, rightGrip) * Time.deltaTime;
+            this.transform.localScale += scaling;
+
+            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);//localScale += scaling;
+            foreach(Transform point in tarray) {
+                point.localScale -= scaling*0.1f;
+            }
         }
 
 

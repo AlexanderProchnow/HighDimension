@@ -97,7 +97,6 @@ public class CSVReader
         var lines = Regex.Split(raw_data, LINE_SPLIT_RE);
 
         numLines = lines.Length;
-        Debug.Log(numLines);
 
         // get column names
         var header = Regex.Split(lines[0], SPLIT_RE);
