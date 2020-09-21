@@ -19,11 +19,21 @@ public class PlotRotation : MonoBehaviour
     // Get data object to keep data points at constant size
     private Transform data;
 
+    // Get axes to scale when changing point size
+    private Transform[] axes;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
         data = this.transform.Find("Data");
+        
+        // Get all axes individually
+        Transform axesBase = this.transform.Find("Axes");
+        axes = new Transform[3];
+        axes[0] = axesBase.Find("x1Pivot");
+        axes[1] = axesBase.Find("x2Pivot");
+        axes[2] = axesBase.Find("x3Pivot");
     }
 
     // Update is called once per frame
@@ -47,31 +57,55 @@ public class PlotRotation : MonoBehaviour
             this.transform.position += new Vector3(leftJoystick.x, 0, leftJoystick.y) * Time.deltaTime;
         }
 
-        // zoom in and out with grip
+        // Zoom in and out with grip:
+        
+        // Zoom out
         float leftGrip = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger);
 
         if(leftGrip!=0) {
-            Vector3 scaling = new Vector3(leftGrip, leftGrip, leftGrip) * Time.deltaTime;
+            Vector3 scaling = new Vector3(leftGrip, leftGrip, leftGrip) * Time.deltaTime * this.transform.localScale.x;
             this.transform.localScale -= scaling;
-
-            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);//localScale += scaling;
-            foreach(Transform point in tarray) {
-                point.localScale += scaling*0.1f;
-            }
         }
 
+        // Zoom in
         float rightGrip = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
 
         if(rightGrip!=0) {
-            Vector3 scaling = new Vector3(rightGrip, rightGrip, rightGrip) * Time.deltaTime;
+            Vector3 scaling = new Vector3(rightGrip, rightGrip, rightGrip) * Time.deltaTime * this.transform.localScale.x;
             this.transform.localScale += scaling;
-
-            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);//localScale += scaling;
-            foreach(Transform point in tarray) {
-                point.localScale -= scaling*0.1f;
-            }
         }
 
+        // Increase and decrease point size: 
+
+        // Decrease point size with left controller X
+        if(OVRInput.Get(OVRInput.Button.Three)) {
+            // Get all points
+            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);
+            // Decrease point size
+            foreach(Transform point in tarray) {
+                point.localScale -= new Vector3(0.1f, 0.1f, 0.1f) * Time.deltaTime;
+            }
+
+            // Decrease axes size
+            axes[0].localScale -= new Vector3(0, 0.1f, 0.1f) * Time.deltaTime;
+            axes[1].localScale -= new Vector3(0.1f, 0, 0.1f) * Time.deltaTime;
+            axes[2].localScale -= new Vector3(0.1f, 0.1f, 0) * Time.deltaTime;
+        }
+
+        // Increase point size with left controller Y
+        if(OVRInput.Get(OVRInput.Button.Four)) {
+            // Get all points
+            Transform[] tarray = data.GetComponentsInChildren<Transform>(false);
+            // Increase point size
+            foreach(Transform point in tarray) {
+                point.localScale += new Vector3(0.1f, 0.1f, 0.1f) * Time.deltaTime;
+            }
+
+            // Increase axes size
+            axes[0].localScale += new Vector3(0, 1f, 1f) * Time.deltaTime;
+            axes[1].localScale += new Vector3(1f, 0, 1f) * Time.deltaTime;
+            axes[2].localScale += new Vector3(1f, 1f, 0) * Time.deltaTime;
+        }
 
         // Reset graph rotation
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstick))

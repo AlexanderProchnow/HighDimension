@@ -48,6 +48,8 @@ public class Startup : MonoBehaviour
     List<GameObject> colored_point_prefabs;
 
     delegate void DropdownEvent(int x1);
+
+    private float initial_scale;
     
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,6 @@ public class Startup : MonoBehaviour
         // Get column names
         variables = importedData.Item2;
 
-        
 
         // Initialize colored point prefabs list
         colored_point_prefabs = new List<GameObject>() {
@@ -74,8 +75,14 @@ public class Startup : MonoBehaviour
         x3 = 2;
         color = 4;
         
-        populatePoints(); 
-               
+        
+        //plotbase.transform.parent.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+
+        populatePoints();      
+
+        // Set initial scaling of plotbase
+        //initial_scale = (fdata[1, x1] + fdata[1, x2] + fdata[1, x3]) / 60;
+         
     }
 
     // called to update the axes (called when menu item changes)
@@ -95,8 +102,8 @@ public class Startup : MonoBehaviour
     }
 
     public void colorUpdate(Dropdown change) {
+        color = change.value;
         if (colorGroupingEnabled) {
-            color = change.value;
             populatePoints();
         }
     }
@@ -120,8 +127,11 @@ public class Startup : MonoBehaviour
         // create list to keep track of color values
         List<float> color_values = new List<float>();
 
+        // Set values for initial point size
+        initial_scale = (fdata[1, x1] + fdata[1, x2] + fdata[1, x3]) / 150;
+
         // iterate over each row in the data
-        for (int line = 1; line < fdata.GetLength(0); line++)
+        for (int line = 1; line < fdata.GetLength(0)-1; line++)
         {
             // Prefab to instantiate for current data point
             GameObject pointPrefab = pointDefault;
@@ -131,6 +141,7 @@ public class Startup : MonoBehaviour
             float value_x2 = fdata[line, x2];
             // x3
             float value_x3 = fdata[line, x3];
+
             // color
             if (colorGroupingEnabled) {
                 float value_color = fdata[line, color];
@@ -162,35 +173,39 @@ public class Startup : MonoBehaviour
             //point.transform.parent = plotbase.transform;
             //point.transform.localPosition = new Vector3(0,0,0);
             point.transform.localPosition = new Vector3(value_x1, value_x2, value_x3);
+            point.transform.localScale = new Vector3(initial_scale, initial_scale, initial_scale);
 
             // Find x1 min and max
-            if (point.transform.position.x<xmin) { xmin = point.transform.position.x; }
-            if (point.transform.position.x>xmax) { xmax = point.transform.position.x; }
+            if (value_x1<xmin) { xmin = value_x1; }
+            if (value_x1>xmax) { xmax = value_x1; }
 
             // Find x2 min and max
-            if (point.transform.position.y<ymin) { ymin = point.transform.position.y; }
-            if (point.transform.position.y>ymax) { ymax = point.transform.position.y; }
+            if (value_x2<ymin) { ymin = value_x2; }
+            if (value_x2>ymax) { ymax = value_x2; }
 
             // Find x3 min and max
-            if (point.transform.position.z<zmin) { zmin = point.transform.position.z; }
-            if (point.transform.position.z>zmax) { zmax = point.transform.position.z; }
+            if (value_x3<zmin) { zmin = value_x3; }
+            if (value_x3>zmax) { zmax = value_x3; }
 
             
         }
 
-        // Scale plot axes to reach up until the maximum and minium values for each axis
-        axis1_object.transform.localScale = new Vector3(xmax, 1, 1);
-        axis2_object.transform.localScale = new Vector3(1, ymax+ymax/3, 1);
-        axis3_object.transform.localScale = new Vector3(1, 1, zmax+zmax/3);
+        Debug.Log("X: " + xmin.ToString() + " - " + xmax.ToString());
 
-        UIManager.updateSliders();
+        // Scale plot axes to reach up until the maximum and minium values for each axis
+        initial_scale *= 100;
+        axis1_object.transform.localScale = new Vector3(xmax, initial_scale, initial_scale);
+        axis2_object.transform.localScale = new Vector3(initial_scale, ymax, initial_scale);
+        axis3_object.transform.localScale = new Vector3(initial_scale, initial_scale, zmax);
+
+        // UIManager.updateSliders();
     }
 
-    // Change axis length and move points acordingly
+    /* Change axis length and move points acordingly UNUSED
     public void moveAxes() {
         axis1_object.transform.localScale = new Vector3(xmax - UIManager.getMinSliderValue(), 1, 1); 
         plotbase.transform.position = new Vector3(-UIManager.getMinSliderValue(), 0, 0);
-    }
+    } */
 
 
     // Helper function

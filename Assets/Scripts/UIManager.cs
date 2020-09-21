@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minSlider = this.transform.Find("FilterPanel").Find("MinSlider").GetComponent<Slider>();
+        //minSlider = this.transform.Find("FilterPanel").Find("MinSlider").GetComponent<Slider>();
 
         // Padding toggle
         currentCase = 2; // starting case is "1"
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    // Set sliders to min and max values of axes
+    /* Set sliders to min and max values of axes
     public static void updateSliders() {
         minSlider.value = Startup.xmin;
         minSlider.minValue = Startup.xmin;
@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 
     public static float getMinSliderValue() {
         return minSlider.value;
-    }
+    } */
 
     public void paddingToggleLeft() {
         currentCase -= 1;

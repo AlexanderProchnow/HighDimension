@@ -52,6 +52,8 @@ public class CSVReader
     }
 
     public static string[,] IntoMultidimensionalArray(string path) {
+        // Get separator from Desktop UI
+        SPLIT_RE = UIManagerDesktop.separator;
 
         // import data from resources folder
         TextAsset raw_data = Resources.Load<TextAsset>(path);
@@ -88,10 +90,11 @@ public class CSVReader
     }
 
     public static string[][] IntoJaggedArray(string path) {
+        // Get separator from Desktop UI
+        SPLIT_RE = UIManagerDesktop.separator;
 
         // import data from resources folder
         string raw_data = File.ReadAllText(path);
-        // TextAsset raw_data = Resources.Load<TextAsset>(path); // OLD
         
         // line split
         var lines = Regex.Split(raw_data, LINE_SPLIT_RE);
@@ -134,12 +137,11 @@ public class CSVReader
         }
 
         for(int row=1; row<numLines-1; row++) {
-            //Debug.Log("row: " + row.ToString()); // TESTING
             for(int column=0; column<raw_data[0].Length; column++) {
                 string currentValue = raw_data[row][column];
                 float fvalue;
-                //Debug.Log("column: " + column.ToString()); //TESTING
 
+                // convert entry to float. If it is not directly convertable (e.g. a string), assign an integer to the value
                 if(!float.TryParse(currentValue, NumberStyles.Any, NumberFormatInfo.InvariantInfo, out fvalue)) {
                     // returns -1 if not found
                     int indexOfLevel = levels[column].IndexOf(currentValue);
@@ -155,7 +157,6 @@ public class CSVReader
                         fvalue = levels[column].IndexOf(currentValue);
                     }
                 }
-                // TODO add if statement for non numbers, i.e. words, letters, dates etc
                 data[row, column] = fvalue;
             }
         }
