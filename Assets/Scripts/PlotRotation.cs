@@ -112,10 +112,11 @@ public class PlotRotation : MonoBehaviour
         {
             this.transform.rotation = Quaternion.identity;
         }
-        // -1 0 left
-        // 0  1 up
 
-        //bool button3 = OVRInput.Get(OVRInput.Button.Three);
+        // Reset graph position
+        if (OVRInput.Get(OVRInput.Button.PrimaryThumbstick)) {
+            this.transform.position = new Vector3(-1.2f, 1f, 0);
+        }
 
         // Open and close menu, menu appears in view of user
         if (OVRInput.Get(menuButton)>=0.5 && cooldown == false) {

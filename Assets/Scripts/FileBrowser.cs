@@ -95,6 +95,10 @@ public class FileBrowser : MonoBehaviour {
         updateDatasetPanel();
     }
 
+    public void Quit() {
+        Application.Quit();
+    }
+
     // Helper function
     private string ExtractFileName(string path) {
         string[] pathArray = Regex.Split(path, @"(\\|/)");

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic;   
+using static System.Math;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
@@ -25,6 +26,8 @@ public class Startup : MonoBehaviour
     [Header("Axes and variables:")]
     [Space(10)]
     public GameObject plotbase;
+
+    public GameObject plotScaler;
 
     
     // axis variables (0=first variable)
@@ -66,10 +69,10 @@ public class Startup : MonoBehaviour
 
         // Initialize colored point prefabs list
         point_colors = new List<Color>() {
-            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
-            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
-            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
-            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f))
+            new Color(0, 0.5928874f, 1f),
+            new Color(0, 1f, 0.005622387f),
+            new Color(1f, 0.5379274f, 0),
+            new Color(1f, 0, 0.1959963f)
         };
 
         // Spawn data points by variables (0=firstVariable)
@@ -78,13 +81,12 @@ public class Startup : MonoBehaviour
         x3 = 2;
         color = 4;
         
-        
-        //plotbase.transform.parent.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        // Set initial scaling of plotbase
+        initial_scale = 2f / (fdata[1, x1] + fdata[1, x2] + fdata[1, x3]);
+        plotScaler.transform.localScale = new Vector3(initial_scale, initial_scale, initial_scale);
 
         populatePoints();      
 
-        // Set initial scaling of plotbase
-        //initial_scale = (fdata[1, x1] + fdata[1, x2] + fdata[1, x3]) / 60;
          
     }
 
@@ -164,7 +166,7 @@ public class Startup : MonoBehaviour
                 // Check if prefab list must be expanded
                 if (index_of_color_value >= point_colors.Count) {
                     // create new color and expand list to accomodate new index
-                    point_colors.Add(new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f))); // TODO Make list extend to new colors
+                    point_colors.Add(new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)));
                 }
                 
                 // override pointPrefab to instantiate so that it includes the appropriate color

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 36903514}
   - component: {fileID: 36903513}
   m_Layer: 5
-  m_Name: EnterVRButton
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1105916706}
         m_TargetAssemblyTypeName: FileBrowser, Assembly-CSharp
-        m_MethodName: EnterVR
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1477,7 +1477,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter VR
+  m_Text: Quit
 --- !u!222 &1053648227
 CanvasRenderer:
   m_ObjectHideFlags: 0
