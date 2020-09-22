@@ -13,10 +13,10 @@ public class Startup : MonoBehaviour
 
     // basic point prefab
     public GameObject pointDefault;
-    public GameObject pointColor1;
+    /*public GameObject pointColor1;
     public GameObject pointColor2;
     public GameObject pointColor3;
-    public GameObject pointColor4;
+    public GameObject pointColor4;*/
 
     [Tooltip("Range in which values are assigned the same color.")]
     public float colorPadding = 1;
@@ -45,7 +45,7 @@ public class Startup : MonoBehaviour
 
     private bool colorGroupingEnabled;
 
-    List<GameObject> colored_point_prefabs;
+    List<Color> point_colors;
 
     delegate void DropdownEvent(int x1);
 
@@ -65,8 +65,11 @@ public class Startup : MonoBehaviour
 
 
         // Initialize colored point prefabs list
-        colored_point_prefabs = new List<GameObject>() {
-            pointColor1, pointColor2, pointColor3, pointColor4
+        point_colors = new List<Color>() {
+            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
+            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
+            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f)),
+            new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f))
         };
 
         // Spawn data points by variables (0=firstVariable)
@@ -133,8 +136,9 @@ public class Startup : MonoBehaviour
         // iterate over each row in the data
         for (int line = 1; line < fdata.GetLength(0)-1; line++)
         {
-            // Prefab to instantiate for current data point
-            GameObject pointPrefab = pointDefault;
+            // Instantiate point with the plotbase as parent and instantiating in world space is false
+            GameObject point = Instantiate(pointDefault, plotbase.transform, false);
+
             // x1
             float value_x1 = fdata[line, x1];
             // x2
@@ -158,17 +162,16 @@ public class Startup : MonoBehaviour
                 }
                 
                 // Check if prefab list must be expanded
-                if (index_of_color_value >= colored_point_prefabs.Count) {
-                    // expand list to accomodate new index
-                    colored_point_prefabs.Add(pointDefault); // TODO Make list extend to new colors
+                if (index_of_color_value >= point_colors.Count) {
+                    // create new color and expand list to accomodate new index
+                    point_colors.Add(new Color(Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f), Random.Range (0, 1f))); // TODO Make list extend to new colors
                 }
                 
                 // override pointPrefab to instantiate so that it includes the appropriate color
-                pointPrefab = colored_point_prefabs[index_of_color_value];
+                point.GetComponent<MeshRenderer>().material.color = point_colors[index_of_color_value];
             }
 
-            // Instantiate point with the plotbase as parent and instantiating in world space is false
-            GameObject point = Instantiate(pointPrefab, plotbase.transform, false);
+
 
             //point.transform.parent = plotbase.transform;
             //point.transform.localPosition = new Vector3(0,0,0);
