@@ -497,9 +497,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d6400000
-    m_LastClickedID: 16598
-    m_ExpandedIDs: 00000000bc400000ce400000d440000000ca9a3b
+    m_SelectedIDs: ca400000
+    m_LastClickedID: 16586
+    m_ExpandedIDs: 00000000be400000c2400000c840000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -527,7 +527,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a8520000
     m_LastClickedID: 21160
-    m_ExpandedIDs: 00000000bc400000
+    m_ExpandedIDs: 00000000be400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -558,18 +558,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c623000066b000004cb1000050ab000068ab0000a0cf02008ccf02009ecf020080e20000aed40000ece10000105000009ed400004ce300006c350000243e0000ee450000ea7800001c3f0000469f00002e470000883b0000a6330000da3d0000544000000e370000ae350000103e000068390000083400002a3700009a400000b433000034370000823f0000185600007845000090c80000000000009c9d000094440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: VRApp
-      m_OriginalName: VRApp
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 21216
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
@@ -649,23 +649,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: de520000
+      m_SelectedIDs: d2400000
       m_LastClickedID: 0
-      m_ExpandedIDs: 369cd7ff329ed7ffa0a3d7ff94a5d7ff802dd8ffd630d8ffd232d8ff02ebd9ff46efd9ff40a2daff72abdaff7eaedbff0ab1dbfffeb2dbff30e0dbffca0edcff7663dcfff678dcffbea7dcff06d6dcff3aebdcff56eedcff80f2dcff6606ddff7c4cddff7c53ddff9483ddff4e86ddff5288ddffe2b6ddff8467deffbc7cdeff9ebfdeffa2a0dfff2ab6dfff902ce6ff802ee6fffab9e7ffe82ee8ff1834e8ffeaf2e8ff4809e9ffd438e9ff96e0eaffc4e3eaffe621ebff6827ebff4ce8feffe8edfeffb03fffff9c44ffff42fbffffe85300006c540000425600003467000046680000bc6800000a6900001e690000d2cb00009ae400001ee50000f4e60000c60f01000e100100101601008016010092160100c8160100321d01007a1d0100103101001832010022320100983201002a5a0100ac5a0100e25a0100f0740100c0750100d2b301001ab4010084ba0100ccba010090df0100d8df0100e2f3010058f40100841d02003a1e0200001f0200761f0200d81f02007e220200b6220200c82302003e240200a02402009a310200d23102006e530200ea540200605502008c580200e85e02009e5f02001c60020064600200da6002003c610200146702008a670200ec670200fe6c0200c46d02003a6e02009c6e020076740200ec7402004e750200627a0200287b02009e7b0200ee95020064960200c6960200a09c0200169d020068a10200a0c90200b2ca020028cb020076cb02008acb0200d2ec0200e4ed02005aee0200bcee0200
+      m_ExpandedIDs: 22aafcffd8b2fcffc2c6fcffe444fdffa057fdff4a8efdffe097fdff84acfdffcab0fdffceb2fdfffac3fdff5425feff72f5ffff42fbffffd03d0000403e0000603e0000da3e0000e63e000072440000ae450000c0460000364700008447000098470000666f0000ae6f0000988c0000148e00008a8e0000ec8e0000dc92000052930000aa9b000044b10000bab100001cb2000094ca00004acb000010cc000086cc0000e8cc0000aa150100c8160100541701003a180100a2180100d218010032190100361901004c190100a4190100c2190100041a0100101a0100241a01004e1a0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Content
+        m_OriginalName: Content
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 72270
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 2}
       m_SearchString: 
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: 3d25ea5f3662bfb4783ea70467e114c4
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -711,9 +711,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.6238135, y: 1.7493796, z: -1.6357181}
+    m_Target: {x: 0.42041692, y: 1.7142862, z: -2.4199347}
     speed: 2
-    m_Value: {x: -0.6238135, y: 1.7493796, z: -1.6357181}
+    m_Value: {x: 0.42041692, y: 1.7142862, z: -2.4199347}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -760,13 +760,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.019115161, y: 0.08384671, z: 0.0016645875, w: -0.99622136}
+    m_Target: {x: -0.03777923, y: 0.032937154, z: -0.0012017133, w: -0.99866784}
     speed: 2
-    m_Value: {x: 0.019116543, y: 0.083852775, z: 0.0016647079, w: -0.9962934}
+    m_Value: {x: -0.037782047, y: 0.03293961, z: -0.0012018029, w: -0.9987422}
   m_Size:
-    m_Target: 1.8671155
+    m_Target: 0.86967534
     speed: 2
-    m_Value: 1.8671155
+    m_Value: 0.86967534
   m_Ortho:
     m_Target: 0
     speed: 2
