@@ -11,7 +11,6 @@ public class FileBrowser : MonoBehaviour {
     public static string path = "";
     public static string fileName;
     
-    public Text pathText;
     public GameObject datasetPanel;
     public GameObject datasetWidgetPrefab;
 
@@ -73,9 +72,6 @@ public class FileBrowser : MonoBehaviour {
 
         // Extract file name from path
         fileName = ExtractFileName(path);
-
-        // Display imported path message
-        pathText.text = path + "\n" +  Application.persistentDataPath + "/data/" + fileName + ".csv" + "\n" + fileName;
 
         // copy file to resource folder
         string copyToPath = Application.persistentDataPath + "/data/" + fileName + ".csv";
